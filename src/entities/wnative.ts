@@ -18,5 +18,12 @@ export const WNATIVE: { [chainId: number]: Token } = {
     18,
     'WOKB',
     'WRAPPED OKB'
-  )
+  ),
+  [ChainId.SonicTestnet]: new Token(
+    ChainId.SonicTestnet,
+    '0xCE5E585580B22790EA7376842Dbeb78baC23F6C6',
+    18,
+    'WS',
+    'WRAPPED S'
+  ),
 };
