@@ -10,7 +10,6 @@ import { TickMath } from '../utils/tickMath';
 import { Tick, TickConstructorArgs } from './tick';
 import { NoTickDataProvider, TickDataProvider } from './tickDataProvider';
 import { TickListDataProvider } from './tickListDataProvider';
-import { InitialPoolFee } from "../types/InitialPoolFee";
 import { POOL_DEPLOYER_ADDRESSES } from "../constants";
 
 interface StepComputations {
@@ -34,8 +33,9 @@ const NO_TICK_DATA_PROVIDER_DEFAULT = new NoTickDataProvider();
 export class Pool {
   public readonly token0: Token;
   public readonly token1: Token;
-  public readonly fee: InitialPoolFee;
+  public readonly fee: number;
   public readonly sqrtRatioX96: JSBI;
+  public readonly deployer: string;
   public readonly liquidity: JSBI;
   public readonly tickCurrent: number;
   public readonly tickDataProvider: TickDataProvider;
@@ -55,8 +55,9 @@ export class Pool {
   public constructor(
     tokenA: Token,
     tokenB: Token,
-    fee: InitialPoolFee,
+    fee: number,
     sqrtRatioX96: BigintIsh,
+    deployer: string,
     liquidity: BigintIsh,
     tickCurrent: number,
     _tickSpacing: number,
@@ -82,6 +83,7 @@ export class Pool {
       : [tokenB, tokenA];
     this.fee = fee;
     this.sqrtRatioX96 = JSBI.BigInt(sqrtRatioX96);
+    this.deployer = deployer;
     this.liquidity = JSBI.BigInt(liquidity);
     this.tickCurrent = tickCurrent;
     this.tickDataProvider = Array.isArray(ticks)
@@ -198,6 +200,7 @@ export class Pool {
         this.token1,
         this.fee,
         sqrtRatioX96,
+        this.deployer,
         liquidity,
         tickCurrent,
         this.tickSpacing,
@@ -242,6 +245,7 @@ export class Pool {
         this.token1,
         this.fee,
         sqrtRatioX96,
+        this.deployer,
         liquidity,
         tickCurrent,
         this.tickSpacing,
