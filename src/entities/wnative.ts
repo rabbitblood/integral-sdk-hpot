@@ -1,4 +1,4 @@
-import { ChainId } from "../constants/chainIds";
+import { ChainId } from '../constants/chainIds';
 import { Token } from './Token';
 
 /**
@@ -11,5 +11,12 @@ export const WNATIVE: { [chainId: number]: Token } = {
     18,
     'WETH',
     'Wrapped ETH'
-  )
+  ),
+  [ChainId.BerachainTestnet]: new Token(
+    ChainId.BerachainTestnet,
+    '0x7507c1dc16935b82698e4c63f2746a2fcf994df8',
+    18,
+    'WBERA',
+    'Wrapped BERA'
+  ),
 };

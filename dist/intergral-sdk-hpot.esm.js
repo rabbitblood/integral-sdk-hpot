@@ -1021,14 +1021,14 @@ function encodeRouteToPath(route, exactOutput) {
       if (index === 0) {
         return {
           inputToken: outputToken,
-          types: ['address', 'address'],
-          path: [inputToken.address, outputToken.address]
+          types: ['address', 'address', 'address'],
+          path: [inputToken.address, pool.deployer, outputToken.address]
         };
       } else {
         return {
           inputToken: outputToken,
-          types: [].concat(types, ['address']),
-          path: [].concat(path, [outputToken.address])
+          types: [].concat(types, ['address', 'address']),
+          path: [].concat(path, [pool.deployer, outputToken.address])
         };
       }
     }, {
@@ -3143,7 +3143,7 @@ var _WNATIVE;
 /**
  * Known WETH9 implementation addresses, used in our implementation of Ether#wrapped
  */
-var WNATIVE = (_WNATIVE = {}, _WNATIVE[ChainId.Holesky] = /*#__PURE__*/new Token(ChainId.Holesky, '0x94373a4919b3240d86ea41593d5eba789fef3848', 18, 'WETH', 'Wrapped ETH'), _WNATIVE);
+var WNATIVE = (_WNATIVE = {}, _WNATIVE[ChainId.Holesky] = /*#__PURE__*/new Token(ChainId.Holesky, '0x94373a4919b3240d86ea41593d5eba789fef3848', 18, 'WETH', 'Wrapped ETH'), _WNATIVE[ChainId.BerachainTestnet] = /*#__PURE__*/new Token(ChainId.BerachainTestnet, '0x7507c1dc16935b82698e4c63f2746a2fcf994df8', 18, 'WBERA', 'Wrapped BERA'), _WNATIVE);
 
 /**
  * Native is the main usage of a 'native' currency

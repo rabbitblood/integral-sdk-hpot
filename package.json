@@ -31,9 +31,9 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "intergral-sdk-hpot",
+  "name": "@rabbitblood/intergral-sdk-hpot",
   "author": "cryptoalgebra",
-  "module": "dist/custom-pools-and-sliding-fee-sdk.esm.js",
+  "module": "dist/intergral-sdk-hpot.esm.js",
   "dependencies": {
     "@ethersproject/abi": "^5.7.0",
     "@ethersproject/address": "^5.7.0",
@@ -55,6 +55,6 @@
     "tslib": "^2.6.2",
     "typescript": "^5.2.2"
   },
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": ""
 }

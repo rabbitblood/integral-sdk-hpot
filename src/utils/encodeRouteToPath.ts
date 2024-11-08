@@ -1,7 +1,7 @@
 import { pack } from '@ethersproject/solidity';
 import { Pool } from '../entities/pool';
 import { Route } from '../entities/route';
-import { Currency, Token } from "../entities";
+import { Currency, Token } from '../entities';
 
 /**
  * Converts a route to a hex encoded path
@@ -10,7 +10,7 @@ import { Currency, Token } from "../entities";
  */
 export function encodeRouteToPath(
   route: Route<Currency, Currency>,
-  exactOutput: boolean,
+  exactOutput: boolean
 ): string {
   const firstInputToken: Token = route.input.wrapped;
 
@@ -22,7 +22,7 @@ export function encodeRouteToPath(
         types,
       }: { inputToken: Token; path: (string | number)[]; types: string[] },
       pool: Pool,
-      index,
+      index
     ): { inputToken: Token; path: (string | number)[]; types: string[] } => {
       const outputToken: Token = pool.token0.equals(inputToken)
         ? pool.token1
@@ -30,18 +30,18 @@ export function encodeRouteToPath(
       if (index === 0) {
         return {
           inputToken: outputToken,
-          types: ['address', 'address'],
-          path: [inputToken.address, outputToken.address],
+          types: ['address', 'address', 'address'],
+          path: [inputToken.address, pool.deployer, outputToken.address],
         };
       } else {
         return {
           inputToken: outputToken,
-          types: [...types, 'address'],
-          path: [...path, outputToken.address],
+          types: [...types, 'address', 'address'],
+          path: [...path, pool.deployer, outputToken.address],
         };
       }
     },
-    { inputToken: firstInputToken, path: [], types: [] },
+    { inputToken: firstInputToken, path: [], types: [] }
   );
 
   return exactOutput

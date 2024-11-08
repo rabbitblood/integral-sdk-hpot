@@ -1,5 +1,5 @@
 import { Route } from '../entities/route';
-import { Currency } from "../entities";
+import { Currency } from '../entities';
 /**
  * Converts a route to a hex encoded path
  * @param route the v3 path to convert to an encoded path
